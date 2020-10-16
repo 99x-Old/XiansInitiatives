@@ -1,5 +1,5 @@
 
-# Xian's Initiaives
+# Xian's Initiatives
 Xians are innovative and most of the time they are spending a quite considerable amount of time contributing to the company initiatives. This is highly valued at 99X culture. At the moment all the information about initiatives is tracked in an ad-hoc manner. Xian's Initiatives is a system to keep track of initiatives and member activities.
 
 ### Prerequisites ###
