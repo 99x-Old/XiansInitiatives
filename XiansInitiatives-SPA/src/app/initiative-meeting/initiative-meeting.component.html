@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="card mt-4">
+		<div class="mx-4 my-4 px-4" *appHasRole="['Lead']">
+			<div class="row ">
+				<div class="col-lg-2 ">
+					<h5 class="float-left">Purpose : </h5>
+				</div>
+				<div class="col-lg-4 ">
+					<input type="text" class="form-control" placeholder="Purpose" [(ngModel)]="newMeetingModel.purpose">
+				</div>
+				<div class="col-lg-3 ">
+					<button class="btn btn-success float-right ml-auto" (click)="newMeeting()"><i
+							class="fa fa-plus"></i> Start Meeting
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="mx-4 my-4 px-4" *appHasRole="['User', 'Evaluator', 'Admin']">
+			<button class="btn btn-success float-right ml-auto" (click)="joinMeeting()"><i class="fa fa-plus"></i> Join the
+				Meeting
+			</button>
+		</div>
+	</div>
+
+	<div *ngIf="configurationSet" class="card mt-4">
+		<div class="mx-4 my-4 px-4">
+			<app-editor [meeting]="meeting" [configuration]="config" [channelId]="channelId"></app-editor>
+		</div>
+	</div>
+
+</div>

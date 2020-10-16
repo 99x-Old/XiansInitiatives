@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace XiansInitiatives.Shared.Dtos
+{
+    public class InitiativeForCreateDto
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string InitiativeYearId { get; set; }
+
+        [Required]
+        public string Department { get; set; }
+
+        public string Description { get; set; }
+
+        public string LeadId { get; set; }
+        public string CoLeadId { get; set; }
+        public string MentorId { get; set; }
+        public string CreatedById { get; set; }
+    }
+}

@@ -1,0 +1,216 @@
+<div class="container mt-4">
+  <div class="card mt-4">
+
+    <div class="mx-4 my-4 px-2">
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <img class="card-img-top img-thumbnail" src="../../assets/initiative_page.jpg" alt="">
+            <div class="card-body">
+              <h5 class="card-title">{{initiative.name}}</h5>
+              <p class="card-text">{{initiative.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card h-100">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item py-1">
+                <dt>Department</dt>{{initiative.department}}
+              </li>
+              <li class="list-group-item py-1">
+                <dt>Start date</dt>{{initiative.createdAt| date: "medium"}}
+              </li>
+              <li class="list-group-item py-1">
+                <dt>Lead</dt>{{initiative.lead.fullName}}
+              </li>
+              <li class="list-group-item py-1">
+                <dt>Co-Lead</dt> {{initiative.coLead.fullName}}
+              </li>
+              <li class="list-group-item py-1">
+                <dt>Mentor</dt> {{initiative.mentor.fullName}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-5 ">
+          <div class="card  h-100">
+            <div class="card-header text-muted">
+              <div class="row">
+                <div class="col-md-8">
+                  <h5 class="card-title">Total number of members: </h5>
+                </div>
+                <div class="col">
+                  <h1>{{initiative.numberOfMembers}}</h1>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="d-flex justify-content-center">Rate Initiative Members</h5>
+              <div class="row d-flex justify-content-center px-4">
+                <select name="coLead" id="coLead" class="form-control custom-select" [(ngModel)]="ratingModel.memberId">
+                  <option value="" [disabled]="true">Select a member</option>
+                  <option *ngFor="let user of initiativeUserList" [ngValue]="user.id">{{user.fullName}}</option>
+                </select>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <rating style="color: #FFD700;font-size: 35px;" [(ngModel)]="ratingModel.rating" [max]="5"
+                  [readonly]=false></rating>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <button type="button" class="btn btn-success w-100 mx-4" (click)="rateMember(ratingModel)">Rate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card px-4 py-4 mt-4">
+    <div class="tab-panel">
+      <tabset class="member-tabset">
+        <tab heading="Action Items">
+          <div class="card mt-4">
+            <div class="mx-4 my-4 px-4">
+              <div class="row mb-4">
+                <div class="col-lg-12 ">
+                  <h4 class="float-left">Action items of the initiative </h4>
+                  <button *appHasRole="['Lead']" class="btn btn-success float-right ml-auto"
+                    (click)="createActionItem()"><i class="fa fa-plus"></i> Create An Action Item
+                  </button>
+                </div>
+              </div>
+              <app-action-list [columnsToDisplay]="columns" [columnsData]="actionItems"></app-action-list>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Meetings">
+          <div class="row mt-4">
+            <div class="container">
+              <div class="card">
+                <div class="mx-4 my-4 px-4">
+                  <div class="row">
+                    <div class="col-lg-12 mb-4">
+                      <h4 class="float-left">Initiative meetings </h4><button
+                        class="btn btn-success float-right ml-auto" *appHasRole="['Lead']" (click)="goToMeetings()"><i
+                          class="fa fa-plus"></i> Start a new meeting</button>
+                    </div>
+                  </div>
+                  <table datatable class="row-border hover">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Purpose</th>
+                        <th>Organizer</th>
+                        <th>Meeting Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let meeting of meetings">
+                        <td>{{meeting.createdAt | date :'medium'}}</td>
+                        <td>{{meeting.purpose}}</td>
+                        <td>{{meeting.organizerName}}</td>
+                        <td><button class="btn-sm btn-primary" (click)="viewMeetingNotes(meeting.meetingNotes)"><i
+                              class="fa fa-view"></i>View Meeting Notes</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="px-3 modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create an action item</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createActionItemForm" (ngSubmit)="onSubmit()">
+
+          <!--Item-->
+          <div class="row form-group">
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': createActionItemForm.get('item').errors
+              && createActionItemForm.get('item').touched}" formControlName="item" placeholder="Action item name">
+              <div class="invalid-feedback">Please insert Action item name</div>
+            </div>
+          </div>
+
+          <!--Description-->
+          <div class="row form-group">
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': createActionItemForm.get('description').errors
+              && createActionItemForm.get('description').touched}" formControlName="description"
+                placeholder="Description">
+              <div class="invalid-feedback">Please insert the description</div>
+            </div>
+          </div>
+
+          <!-- Deadline -->
+          <div class="form-group">
+            <input [ngClass]="{'is-invalid': createActionItemForm.get('deadline').errors
+                 && createActionItemForm.get('deadline').touched}" class="form-control" placeholder="Deadline"
+              formControlName="deadline" type="text" bsDatepicker [bsConfig]="bsConfig">
+            <div class="invalid-feedback"
+              *ngIf="createActionItemForm.get('deadline').touched && createActionItemForm.get('deadline').hasError('required')">
+              Deadline is required</div>
+          </div>
+
+          <!--Progress-->
+          <div class="form-group">
+
+            <select name="progress" id="progress" class="form-control custom-select" formControlName="progress"
+              placeholder="Progress">
+              <option [ngValue]=0>0%</option>
+              <option [ngValue]=25>25%</option>
+              <option [ngValue]=50>50%</option>
+              <option [ngValue]=75>75%</option>
+              <option [ngValue]=100>100%</option>
+
+            </select>
+          </div>
+          <div class="">
+            <h6>Add assignees</h6>
+          </div>
+          <div class="row pb-2">
+            <div class="col-md-10">
+              <select class="form-control custom-select float-left" [(ngModel)]="assigneesModel.assignee"
+                formControlName="assignees">
+                <option value="" [disabled]="true">Select a member</option>
+                <option *ngFor="let user of initiativeUserList" [ngValue]="user">{{user.fullName}}</option>
+              </select>
+            </div>
+            <div class="col ">
+              <button type="button" class="btn btn-success float-right" (click)="addAssignees(assigneesModel.assignee)">Add</button>
+            </div>
+
+          </div>
+          <ul class="list-group mb-1">
+            <li class="list-group-item" *ngFor="let assignee of assignees">
+              <div class="row">
+                <div class="col-md-10">
+                  {{assignee.fullName}}
+                </div>
+                <div class="col">
+                  <button type="button" class="btn-sm btn-danger" (click)="removeMember(assignee.assigneeId)"><i
+                      class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="row form-group text-center">
+            <div class="col-lg-12"><button class="btn btn-success mr-2" [disabled]="!createActionItemForm.valid"
+                type="submit">Create</button>
+              <button type="button" class="btn btn-primary" (click)="hidePopup()">Close</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	<ProjectGuid>{1DBDC76E-91C5-40C8-9476-3FEE6EB10691}</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XiansInitiatives.Shared\XiansInitiatives.Shared.csproj" />
+  </ItemGroup>
+
+  
+
+</Project>

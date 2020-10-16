@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	<ProjectGuid>{32D5266E-7CA7-4B3D-AC47-4851054BF636}</ProjectGuid>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.14.5" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XiansInitiatives.API\XiansInitiatives.API.csproj" />
+    <ProjectReference Include="..\XiansInitiatives.DataContract\XiansInitiatives.DataContract.csproj" />
+    <ProjectReference Include="..\XiansInitiatives.Data\XiansInitiatives.Data.csproj" />
+    <ProjectReference Include="..\XiansInitiatives.ServiceContract\XiansInitiatives.ServiceContract.csproj" />
+    <ProjectReference Include="..\XiansInitiatives.Service\XiansInitiatives.Service.csproj" />
+    <ProjectReference Include="..\XiansInitiatives.Shared\XiansInitiatives.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

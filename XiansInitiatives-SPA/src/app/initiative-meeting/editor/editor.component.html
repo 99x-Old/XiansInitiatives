@@ -1,0 +1,31 @@
+<div class="container">
+	<main>
+		<div class="message">
+			<div class="centered">
+				<h4>Meeting notes</h4>
+				<p>
+					Share this  <a href="{{sharableUrl}}"> {{sharableUrl}}</a> link with fellow xians to take meeting notes collaboratively!
+				</p>
+			</div>
+		</div>
+		<div class="centered">
+			<div class="row row-presence">
+				<div #presenceList class='presence'></div>
+			</div>
+			<div class='row row-editor'>
+				<ckeditor [editor]="Editor" (ready)="onReady($event)" [config]="editorConfig" [data]="data"></ckeditor>
+				<div #sidebar class='sidebar'></div>
+			</div>
+		</div>
+		<button class="btn btn-success my-3" id="start" (click)="saveData()"><i class="fa fa-save"></i> Save meeting
+			notes</button>
+	</main>
+	<footer>
+		<div class="centered">
+
+			<p>
+				Copyright © 2020, Xians Initiatives – All rights reserved.
+			</p>
+		</div>
+	</footer>
+</div>

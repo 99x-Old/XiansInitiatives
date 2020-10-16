@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="container">
+    <div class="row mx-4 my-4 py-4">
+      <div class="col-lg-12 pt-3">
+        <h4 class="float-left w-50">Current members of the Xians Initiatives</h4><button
+          class="btn btn-success float-right ml-auto" [routerLink]="['/register']"><i class="fa fa-plus"></i>
+          New Member</button>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="mx-4 my-4 px-4">
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>Xian</th>
+              <th>Email</th>
+              <th>Designation</th>
+              <th>Gender</th>
+              <th>Role</th>
+              <th>Account Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users" (click)="updateUser(user)">
+              <td><img style="height: 30px; width: 30px; border-radius: 50%;" class="avatar avatar-16 img-circle"
+                src="{{user.profileImageUrl}}"/>&nbsp; {{user.fullName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.designation}}</td>
+              <td>{{user.gender}}</td>
+              <td>{{user.role}}</td>
+              <td *ngIf="user.locked">Deactive</td>
+              <td *ngIf="!user.locked">Active</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Creates the bootstrap modal where the image will appear -->
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="px-3 modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel" *ngIf="selectedUser">Edit - {{selectedUser.fullName}}</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <!--FirstName-->
+          <div class="row form-group">
+            <div class="col-3"><label class="control-label">
+                <dt>First Name</dt>
+              </label></div>
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': registerForm.get('firstName').errors
+              && registerForm.get('firstName').touched}" formControlName="firstName" placeholder="First Name"
+                *ngIf="selectedUser" [(ngModel)]="selectedUser.firstName">
+              <div class="invalid-feedback">Please insert the first name</div>
+            </div>
+          </div>
+
+          <!--LastName-->
+          <div class="row form-group">
+            <div class="col-3"><label class="control-label">
+                <dt>Last Name</dt>
+              </label></div>
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': registerForm.get('lastName').errors
+                 && registerForm.get('lastName').touched}" formControlName="lastName" placeholder="Last Name"
+                *ngIf="selectedUser" [(ngModel)]="selectedUser.lastName">
+              <div class="invalid-feedback">Please insert the last name</div>
+            </div>
+
+          </div>
+
+          <!--Designation-->
+          <div class="row form-group">
+            <div class="col-3"><label class="control-label">
+                <dt>Designation</dt>
+              </label></div>
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': registerForm.get('designation').errors
+                 && registerForm.get('designation').touched}" formControlName="designation" placeholder="Designation"
+                *ngIf="selectedUser" [(ngModel)]="selectedUser.designation">
+              <div class="invalid-feedback">Please insert the designation</div>
+            </div>
+
+          </div>
+
+          <!--Role-->
+          <div class="row form-group">
+            <div class="col-3"><label class="control-label">
+                <dt>User Role</dt>
+              </label></div>
+            <div class="col"><select name="role" id="role" class="form-control custom-select" formControlName="role"
+                *ngIf="selectedUser" [(ngModel)]="selectedUser.role">
+                <option value="Admin">Admin</option>
+                <option value="Evaluator">Evaluator</option>
+                <option value="Lead">Lead</option>
+                <option value="User">User</option>
+              </select></div>
+          </div>
+
+          <!--Lock Unlock-->
+          <div class="row form-group">
+            <div class="col-3"><label class="control-label">
+                <dt>Status</dt>
+              </label></div>
+            <div class="col"><label class="radio-inline">
+                <input class="mr-2" type="radio" [value]=false formControlName="locked" *ngIf="selectedUser"
+                  [(ngModel)]="selectedUser.locked">Active
+              </label>
+              <label class="radio-inline ml-3">
+                <input class="mr-2" type="radio" [value]=true formControlName="locked" *ngIf="selectedUser"
+                  [(ngModel)]="selectedUser.locked">Deactive
+              </label></div>
+          </div>
+
+          <div class="row form-group text-center">
+            <div class="col-lg-12">
+              <button class="btn btn-success mr-2" [disabled]="!registerForm.valid" type="submit">Save</button>
+              <button type="button" class="btn btn-danger mx-3" (click)="deleteUser(selectedUser.id)">Delete</button>
+              <button type="button" class="btn btn-primary" (click)="hidePopup()">Close</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

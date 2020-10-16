@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XiansInitiatives.MailFunction", "XiansInitiatives.MailFunction\XiansInitiatives.MailFunction.csproj", "{47F35F0F-C568-4C6D-8F7E-25B19766F2DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47F35F0F-C568-4C6D-8F7E-25B19766F2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F35F0F-C568-4C6D-8F7E-25B19766F2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F35F0F-C568-4C6D-8F7E-25B19766F2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F35F0F-C568-4C6D-8F7E-25B19766F2DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {764F0520-C7D6-43AF-B026-A877EC1F554C}
+	EndGlobalSection
+EndGlobal

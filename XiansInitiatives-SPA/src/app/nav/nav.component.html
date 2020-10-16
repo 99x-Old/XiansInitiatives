@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand"><img src="../../assets/logo.png" alt="" style="border-radius: 3px;">  Xian's Initiatives</a>
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" *appHasRole="['User','Admin','Evaluator','Lead']" [routerLink]="['/home',userId]">Home</a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" *appHasRole="['Admin']" [routerLink]="['/members']">Members</a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" *appHasRole="['Evaluator']" [routerLink]="['/manageinitives']">Manage Initiatives</a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" *appHasRole="['Lead']" [routerLink]="['/leadinitiative']">Lead Initiative</a>
+      </li>
+      <li class="nav-item active" routerLinkActive="active">
+        <a class="nav-link" *appHasRole="['Evaluator']" [routerLink]="['/dashboard']">Dashboard</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <!-- <a class="nav-link" *appHasRole="['User']" [routerLink]="['/']">View</a> -->
+      </li>      
+    </ul>
+
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <a class="dropdown-toggle text-light " dropdownToggle>
+        Welcome {{ getUsername() | titlecase }}!
+      </a>
+      <ul id="dropdown-basic mt-4" *dropdownMenu class="dropdown-menu" aria-labelledby="button-basic">
+        <li role="menuitem" *appHasRole="['Admin']"><a class="dropdown-item" [routerLink]="['/register']"><i
+              class="fa fa-user"></i> Add Users</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<ProjectGuid>{28E3751F-EC86-40DB-9A9B-CA5E31B0C600}</ProjectGuid>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\XiansInitiative.Configuration.Accesser\XiansInitiative.Configuration.Accessor.csproj" />
+		<ProjectReference Include="..\XiansInitiatives.Data\XiansInitiatives.Data.csproj" />
+		<ProjectReference Include="..\XiansInitiatives.ServiceContract\XiansInitiatives.ServiceContract.csproj" />
+		<ProjectReference Include="..\XiansInitiatives.Service\XiansInitiatives.Service.csproj" />
+		<ProjectReference Include="..\XiansInitiatives.Shared\XiansInitiatives.Shared.csproj" />
+	</ItemGroup>
+</Project>

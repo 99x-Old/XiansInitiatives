@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	 <ProjectGuid>{0ADE0B44-A4BD-4AFD-9CA2-7FECC0E6CDCB}</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XiansInitiatives.Shared\XiansInitiatives.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

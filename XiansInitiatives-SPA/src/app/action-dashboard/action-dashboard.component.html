@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="card mt-4">
+    <div class="row mx-3 mb-3">
+      <div class="col">
+        <div class="card mt-3 pb-3 px-3 py-3">
+          <div class="row">
+            <div class="col-md-10">
+              <h5>Select the initiative: </h5>
+              <select name="coLead" id="coLead" class="form-control custom-select"
+                (change)="onSelectInitiative($event.target.value)">
+                <option value="" [disabled]="true">Select an initiative</option>
+                <option *ngFor="let initiative of initiativeList let i = index" [attr.selected]="i == 0 ? true : null"
+                  [value]="initiative.id">{{initiative.name}}</option>
+              </select>
+            </div>
+            <div class="col">
+           
+              <button type="button" class="btn btn-primary float-left py-3" (click)="generateNewsLetter()">Generate News Letter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mx-3 mb-3">
+      <div class="col-md-4">
+        <div class="card my-2 px-3 py-3 h-100">
+          <h4 class="mb-3">Top Contributors</h4>
+          <ul class="list-group list-group-flush" *ngIf="reportData">
+            <li class="list-group-item py-1" *ngFor="let contributor of reportData.topContributors">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img style="height: 48px; width: 48px; border-radius: 50%;" class="avatar avatar-16 img-circle"
+                    src="{{contributor.profileImageUrl}}" />
+                </div>
+                <div class="col">
+                  <dt>{{contributor.fullName}}</dt>
+                  <rating style="color: #FFD700;font-size: 25px;" [(ngModel)]="contributor.rating" [max]="5"
+                    [readonly]=true></rating>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="card my-2 px-3 py-4 h-100">
+          <h4>Action Item status</h4>
+          <div class="row my-4">
+            <div class="col-md-6">
+              <h5 class="mb-2">Progress</h5>
+              <div style="display: block">
+                <canvas baseChart [chartType]="chartType" [datasets]="progressChartDataset" [labels]="progressLabels"
+                  [colors]="chartColors" [options]="chartOptions" [legend]="true">
+                </canvas>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="mb-2">Contributors</h5>
+              <div style="display: block">
+                <canvas baseChart [chartType]="chartType" [datasets]="contributionChartDataset"
+                  [labels]="contributorsLabels" [colors]="chartColors" [options]="chartOptions" [legend]="true">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mx-3 mb-3">
+      <div class="col">
+        <div class="card mt-3 pb-3 px-3 py-3">
+          <h4>All the action items</h4>
+          <app-action-list [columnsToDisplay]="columns" [columnsData]="actionItems"></app-action-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

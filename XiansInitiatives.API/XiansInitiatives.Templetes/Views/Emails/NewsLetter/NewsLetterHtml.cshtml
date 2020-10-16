@@ -1,0 +1,55 @@
+@using XiansInitiatives.Templetes.ViewModels
+@model NewsLetterViewModel
+
+@{
+    Layout = "_NewsLetterLayoutHtml";
+    ViewContext.ViewData["EmailTitle"] = "News Letter Xian's Initiatives";
+}
+@foreach (var report in Model.newsLetterData)
+{
+    <h2>
+        @report.Initative Initiative
+    </h2>
+    <p>
+        Top Contributors
+    </p>
+    <table>
+        @foreach (var contributor in report.TopContributors)
+        {
+            <tr>
+                <td>
+                    <img src="@contributor.ProfileImageUrl" alt="User" style="width: 42px; height: 42px; border-radius : 50%">
+
+                <td style="padding-left: 20px;">
+                    @Html.DisplayFor(m => contributor.FullName)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        Upcoming Review Cycles
+    </p>
+    <table>
+        <tr>
+            <th>
+                Review Cycle
+            </th>
+            <th>
+                Scheduled Date
+            </th>
+        </tr>
+        @foreach (var reviewCycle in report.UpComingReviewCycles)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => reviewCycle.Description)
+                <td>
+                    @Html.DisplayFor(m => reviewCycle.ScheduledAt)
+                </td>
+            </tr>
+        }
+    </table>
+    <hr />
+}

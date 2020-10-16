@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="container">
+    <div class="row mx-4 my-4 py-3">
+      <div class="col-lg-12">
+        <h4 class="float-left">Showing initiatives for initiative year </h4><button
+          class="btn btn-success float-right ml-auto" (click)="createInitiative()"><i class="fa fa-plus"></i> Create an
+          Initiative</button>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="mx-4 my-4 px-4">
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>Initiative</th>
+              <th>Description</th>
+              <th>Department</th>
+              <th>Start date</th>
+              <th>Lead</th>
+              <th>Co-Lead</th>
+              <th>Mentor</th>
+              <!-- <th>Created By</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let initiative of initiatives" (click)="updateInitiative(initiative.id)">
+              <td>{{initiative.name}}</td>
+              <td>{{initiative.description}}</td>
+              <td>{{initiative.department}}</td>
+              <td>{{initiative.createdAt | date: "medium"}}</td>
+              <td *ngIf="initiative.lead">{{initiative.lead.fullName}}</td>
+              <td *ngIf="!initiative.lead">N/A</td>
+              <td *ngIf="initiative.coLead">{{initiative.coLead.fullName}}</td>
+              <td *ngIf="!initiative.coLead">N/A</td>
+              <td *ngIf="initiative.mentor">{{initiative.mentor.fullName}}</td>
+              <td *ngIf="!initiative.mentor">N/A</td>              
+              <td><button
+                class="btn btn-danger float-right ml-auto" (click)="deleteInitiative(initiative.id)"><i class="fa fa-trash"></i></button></td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="px-3 modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create a new initiative</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createInitiativeForm" (ngSubmit)="onSubmit()">
+
+          <!--Name-->
+          <div class="row form-group">
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': createInitiativeForm.get('name').errors
+              && createInitiativeForm.get('name').touched}" formControlName="name" placeholder="Initiative name">
+              <div class="invalid-feedback">Please insert the Initiative year</div>
+            </div>
+          </div>
+
+          <!--Description-->
+          <div class="row form-group">
+            <div class="col"><input type="text" class="form-control" [ngClass]="{'is-invalid': createInitiativeForm.get('description').errors
+              && createInitiativeForm.get('description').touched}" formControlName="description"
+                placeholder="Description">
+              <div class="invalid-feedback">Please insert the description</div>
+            </div>
+          </div>
+
+          <!--Department-->
+          <div class="row form-group">
+
+            <div class="col"><select name="department" id="department" class="form-control custom-select"
+                formControlName="department">
+                <option value="" [disabled]="true">Select the Department </option>
+                <option value="People">People</option>
+                <option value="Technology">Technology</option>
+              </select></div>
+          </div>
+
+          <!--Lead-->
+          <div class="row form-group">
+
+            <div class="col"><select name="lead" id="lead" class="form-control custom-select" formControlName="leadId">
+                <option value="" [disabled]="true">Select the Lead </option>
+                <option *ngFor="let user of userList" [ngValue]="user.id">{{user.fullName}}</option>
+              </select></div>
+          </div>
+
+          <!--Co-Lead-->
+          <div class="row form-group">
+
+            <div class="col"><select name="coLead" id="coLead" class="form-control custom-select"
+                formControlName="coLeadId">
+                <option value="" [disabled]="true">Select the Co-Lead </option>
+                <option *ngFor="let user of userList" [ngValue]="user.id">{{user.fullName}}</option>
+              </select></div>
+          </div>
+
+          <!--Mentor-->
+          <div class="row form-group">
+
+            <div class="col"><select name="mentor" id="mentor" class="form-control custom-select"
+                formControlName="mentorId">
+                <option value="" [disabled]="true">Select the Mentor </option>
+                <option *ngFor="let user of userList" [ngValue]="user.id">{{user.fullName}}</option>
+              </select></div>
+          </div>
+
+          <div class="row form-group text-center">
+            <div class="col-lg-12"><button class="btn btn-success mr-2" [disabled]="!createInitiativeForm.valid"
+                type="submit">Create</button>
+              <button type="button" class="btn btn-primary" (click)="hidePopup()">Close</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  
