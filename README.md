@@ -11,10 +11,10 @@ Xians are innovative and most of the time they are spending a quite considerable
 * Azure cloud services
 
 ### Architecture Diagram###
-![Alt text](/XiansInitiatives.Assets/Architecture diagram.png?raw=true "Architecture diagram")
+![Alt text](/XiansInitiatives.Assets/Architecture_diagram.png?raw=true "Architecture diagram")
 
 ### Database Diagram###
-![Alt text](/XiansInitiatives.Assets/Database Diagram.png?raw=true "Database diagram")
+![Alt text](/XiansInitiatives.Assets/Database_diagram.png?raw=true "Database diagram")
 
 ### Azure services used ###
 
