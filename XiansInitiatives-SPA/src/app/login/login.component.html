@@ -1,30 +1,32 @@
-<div class="container w-25">
-  <div class="card">
-    <div class="login-form mx-4 my-4">
-      <form #loginForm="ngForm" (ngSubmit)="login()">
-        <h2 class="text-center">Sign in</h2>
-        <div class="form-group">
-          <input type="text" class="form-control" id="username" name="username" placeholder="Username" required
-            [(ngModel)]="model.username" />
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
-            [(ngModel)]="model.password" />
-        </div>
-        <div class="clearfix">
-          <label class="float-middle form-check-label">
-            <input type="checkbox" /> Remember Me</label>
-        </div>
-        <div class="form-group">
-          <button type="submit" id="login" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mb-3">
-            Sign in
-          </button>
-          <!-- <img src="../../assets/ms_signin_dark.png" class="btn rounded mx-auto d-block" alt="" /> -->
-          <button type="" class="btn btn-link btn-block" [routerLink]="['/register']">
-            Sign Up for an account
-          </button>
-        </div>
-      </form>
+<div [ngStyle]="{backgroundImage:'url(../../assets/background.png)'}" >
+  <div class="container w-25">
+    <div class="card">
+      <div class="login-form mx-4 my-4">
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <h2 class="text-center">Sign in</h2>
+          <div class="form-group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required
+              [(ngModel)]="model.username" />
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required
+              [(ngModel)]="model.password" />
+          </div>
+          <div class="clearfix">
+            <label class="float-middle form-check-label">
+              <input type="checkbox" /> Remember Me</label>
+          </div>
+          <div class="form-group">
+            <button type="submit" id="login" [disabled]="!loginForm.valid" class="btn btn-primary btn-block mb-3">
+              Sign in
+            </button>
+            <!-- <img src="../../assets/ms_signin_dark.png" class="btn rounded mx-auto d-block" alt="" /> -->
+            <button type="" class="btn btn-link btn-block" [routerLink]="['/register']">
+              Sign Up for an account
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
