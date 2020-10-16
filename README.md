@@ -10,10 +10,10 @@ Xians are innovative and most of the time they are spending a quite considerable
 * MS SQL server
 * Azure cloud services
 
-### Architecture Diagram###
+### Architecture Diagram
 ![Alt text](/XiansInitiatives.Assets/Architecture_diagram.png?raw=true "Architecture diagram")
 
-### Database Diagram###
+### Database Diagram
 ![Alt text](/XiansInitiatives.Assets/Database_diagram.png?raw=true "Database diagram")
 
 ### Azure services used ###
